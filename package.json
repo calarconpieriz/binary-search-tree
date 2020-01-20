@@ -1,0 +1,23 @@
+{
+  "name": "binary-search-tree",
+  "version": "1.0.0",
+  "description": "Binary search tree",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calarconpieriz/binary-search-tree.git"
+  },
+  "keywords": [
+    "binary",
+    "tree"
+  ],
+  "author": "Cristian Alarcón Pieriz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calarconpieriz/binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/calarconpieriz/binary-search-tree#readme"
+}
