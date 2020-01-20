@@ -17,21 +17,21 @@ class BST {
   }
 
   insert(value) {
-    this.count++;
+    this.count++
     let newNode = new Node(value)
     const searchTree = node => {
       if (value < node.value) {
         if (!node.left) {
           node.left = newNode
         } else {
-          searhTree(node.left)
+          searchTree(node.left)
         }
       }
-      else if (vlaue > node.value) {
+      else if (value > node.value) {
         if (!node.right) {
-          node.left = newNode
+          node.right = newNode
         } else {
-          searhTree(node.right)
+          searchTree(node.right)
         }
       }
     }
@@ -60,10 +60,7 @@ class BST {
       if (currentNode.value === value) {
         return true
       }
-      if (currentNode.value < value) {
-        currentNode = currentNode.right
-      }
-      if (currentNode.value > value) {
+      if (value < currentNode.value) {
         currentNode = currentNode.left
       } else {
         currentNode = currentNode.right
@@ -140,6 +137,21 @@ class BST {
     return result
   }
 }
+const rootValue = 5;
+const tree = new BST(rootValue)
+
+const list = [9, 10, 4, 7, 22, 1, 35]
+console.log('Root value:', rootValue)
+console.log('List', list)
+
+list.forEach(item => tree.insert(item))
+
+const value = 22;
+
+console.log('Size:', tree.size())
+console.log('Min:', tree.min())
+console.log('Max:', tree.max())
+console.log(`Contains ${value}?:`, tree.contains(value))
 
 
 
