@@ -72,5 +72,49 @@ class BST {
     return false
   }
 
+  /**
+   * @name dfsInOrder
+   * @description DFS in-order - left, root, right
+   */
+  dfsInOrder() {
+    let result = []
+    const traverse = node => {
+      if (node.left) traverse(node.left)
+      result.push(node.value)
+      if (node.right) traverse(node.right)
+    }
+    return result
+  }
+
+  /**
+   * @name dsfPreOrder
+   * @description DFS pre-order - root, left, right
+   */
+  dsfPreOrder() {
+    let result = []
+    const traverse = node => {
+      result.push(node.value)
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+    }
+    return result
+  }
+
+  /**
+   * @name dsfPostOrder
+   * @description DFS post-order - left, right, root
+   */
+  dsfPostOrder() {
+    let result = []
+    const traverse = node => {
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+      result.push(node.value)
+    }
+    return result
+  }
+
+
+
 
 }
