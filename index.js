@@ -194,7 +194,7 @@ class BST {
     return result
   }
 
-  getMaxLeft() {
+  getMinLeft() {
     let currentNode = this.root;
     let maxLeft = 0
     while (currentNode.left) {
@@ -218,7 +218,7 @@ class BST {
 
   getTreeWidth() {
     let treeWidth = 1
-    for (let i = this.getMaxLeft(); i < this.getMaxRight(); i++) {
+    for (let i = this.getMinLeft(); i < this.getMaxRight(); i++) {
       treeWidth++
     }
     return treeWidth
@@ -239,9 +239,11 @@ class BST {
   getVerticalSum() {
     const hashMap = new HashTable(this.getTreeWidth())
     this.findVerticalSum(this.root, 0, hashMap)
-    return hashMap;
-
-
+    const table = []
+    for (let i = this.getMinLeft(); i <= this.getMaxRight(); i++) {
+      table.push({ [i]: hashMap.search(`${i}`) })
+    }
+    return table
   }
 }
 const rootValue = 5;
@@ -271,7 +273,7 @@ console.log('Breadth-first search', tree.bfs())
 // Breadth-first search reverse
 console.log('Breadth-first search reverse', tree.bfsReverse())
 
-console.log('Max left', tree.getMaxLeft());
+console.log('Min left', tree.getMinLeft());
 console.log('Max right', tree.getMaxRight());
 console.log('Tree Width', tree.getTreeWidth())
 
