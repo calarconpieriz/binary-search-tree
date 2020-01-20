@@ -137,6 +137,27 @@ class BST {
 
     return result
   }
+
+  // Breadth-first search
+  bfsReverse() {
+    let result = []
+    let queue = []
+    queue.push(this.root)
+
+    while (queue.length) {
+      let currentNode = queue.shift()
+
+      result.push(currentNode.value)
+      if (currentNode.right) {
+        queue.push(currentNode.right)
+      }
+      if (currentNode.left) {
+        queue.push(currentNode.left)
+      }
+    }
+
+    return result
+  }
 }
 const rootValue = 5;
 const tree = new BST(rootValue)
@@ -162,6 +183,8 @@ console.log('Pre-order', tree.dfsPreOrder())
 console.log('Post-order', tree.dfsPostOrder())
 // Breadth-first search
 console.log('Breadth-first search', tree.bfs())
+// Breadth-first search reverse
+console.log('Breadth-first search reverse', tree.bfsReverse())
 
 
 
