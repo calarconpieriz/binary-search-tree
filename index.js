@@ -9,7 +9,7 @@ class Node {
 class BST {
   constructor(value) {
     this.root = new Node(value)
-    this.count = 0
+    this.count = 1
   }
 
   size() {
@@ -83,6 +83,8 @@ class BST {
       result.push(node.value)
       if (node.right) traverse(node.right)
     }
+
+    traverse(this.root)
     return result
   }
 
@@ -97,6 +99,8 @@ class BST {
       if (node.left) traverse(node.left)
       if (node.right) traverse(node.right)
     }
+
+    traverse(this.root)
     return result
   }
 
@@ -111,10 +115,31 @@ class BST {
       if (node.right) traverse(node.right)
       result.push(node.value)
     }
+
+    traverse(this.root)
     return result
   }
 
+  bfs() {
+    let result = []
+    let queue = []
+    queue.push(this.root)
 
+    while (queue.length) {
+      let currentNode = queue.shift()
 
+      result.push(currentNode.value)
+      if (currentNode.left) {
+        queue.push(currentNode.left)
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right)
+      }
+    }
 
+    return result
+  }
 }
+
+
+
