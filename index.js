@@ -86,10 +86,10 @@ class BST {
   }
 
   /**
-   * @name dsfPreOrder
+   * @name dfsPreOrder
    * @description DFS pre-order - root, left, right
    */
-  dsfPreOrder() {
+  dfsPreOrder() {
     let result = []
     const traverse = node => {
       result.push(node.value)
@@ -102,10 +102,10 @@ class BST {
   }
 
   /**
-   * @name dsfPostOrder
+   * @name dfsPostOrder
    * @description DFS post-order - left, right, root
    */
-  dsfPostOrder() {
+  dfsPostOrder() {
     let result = []
     const traverse = node => {
       if (node.left) traverse(node.left)
@@ -152,6 +152,13 @@ console.log('Size:', tree.size())
 console.log('Min:', tree.min())
 console.log('Max:', tree.max())
 console.log(`Contains ${value}?:`, tree.contains(value))
+
+// [ 1, 4, 5, 7, 9, 10, 22, 35 ] - left, root, right
+console.log('In-order', tree.dfsInOrder())
+// [ 5, 4, 1, 9, 7, 10, 22, 35 ] - root, left, right
+console.log('Pre-order', tree.dfsPreOrder())
+// [ 1, 4, 7, 35, 22, 10, 9, 5 ] left, right, root
+console.log('Post-order', tree.dfsPostOrder())
 
 
 
