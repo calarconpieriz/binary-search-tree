@@ -38,11 +38,39 @@ class BST {
     searchTree(this.root)
   }
 
-  min() { }
+  min() {
+    let currentNode = this.root
+    while (currentNode.left) {
+      currentNode = currentNode.left
+    }
+    return currentNode.value
+  }
 
-  max() { }
+  max() {
+    let currentNode = this.root
+    while (currentNode.right) {
+      currentNode = currentNode.right
+    }
+    return currentNode.value
+  }
 
-  contains() { }
+  contains(value) {
+    let currentNode = this.root
+    while (currentNode) {
+      if (currentNode.value === value) {
+        return true
+      }
+      if (currentNode.value < value) {
+        currentNode = currentNode.right
+      }
+      if (currentNode.value > value) {
+        currentNode = currentNode.left
+      } else {
+        currentNode = currentNode.right
+      }
+    }
+    return false
+  }
 
 
 }
