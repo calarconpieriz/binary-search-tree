@@ -117,6 +117,7 @@ class BST {
     return result
   }
 
+  // Breadth-first search
   bfs() {
     let result = []
     let queue = []
@@ -159,6 +160,8 @@ console.log('In-order', tree.dfsInOrder())
 console.log('Pre-order', tree.dfsPreOrder())
 // [ 1, 4, 7, 35, 22, 10, 9, 5 ] left, right, root
 console.log('Post-order', tree.dfsPostOrder())
+// Breadth-first search
+console.log('Breadth-first search', tree.bfs())
 
 
 
