@@ -6,6 +6,41 @@ class Node {
   }
 }
 
+const hash = (key, size) => {
+  let hashedKey = 0
+  for (let i = 0; i < key.length; i++) {
+    hashedKey += key.charCodeAt(i)
+  }
+  return hashedKey % size
+}
+
+class HashTable {
+  constructor(value) {
+    this.size = value
+    this.buckets = Array(this.size)
+    for (let i = 0; i < this.buckets.length; i++) {
+      this.buckets[i] = new Map()
+    }
+  }
+
+  insert(key, value) {
+    let idx = hash(key, this.size)
+    this.buckets[idx].set(key, value)
+  }
+
+  remove(key) {
+    let idx = hash(key, this.size)
+    let deleted = this.buckets[idx].get(key)
+    this.buckets[idx].delete(key)
+    return deleted
+  }
+
+  search(key) {
+    let idx = hash(key, this.size)
+    return this.buckets[idx].get(key)
+  }
+}
+
 class BST {
   constructor(value) {
     this.root = new Node(value)
@@ -158,6 +193,56 @@ class BST {
 
     return result
   }
+
+  getMaxLeft() {
+    let currentNode = this.root;
+    let maxLeft = 0
+    while (currentNode.left) {
+      maxLeft--
+      currentNode = currentNode.left
+
+    }
+    return maxLeft
+  }
+
+  getMaxRight() {
+    let currentNode = this.root;
+    let maxRight = 0
+    while (currentNode.right) {
+      maxRight++
+      currentNode = currentNode.right
+
+    }
+    return maxRight
+  }
+
+  getTreeWidth() {
+    let treeWidth = 1
+    for (let i = this.getMaxLeft(); i < this.getMaxRight(); i++) {
+      treeWidth++
+    }
+    return treeWidth
+  }
+
+  findVerticalSum(node, column, hashMap) {
+    if (node === null) {
+      return
+    }
+    const acc = hashMap.search(`${column}`) ? hashMap.search(`${column}`) : 0
+    hashMap.insert(`${column}`, acc + node.value)
+    // recursively process left sub-tree
+    this.findVerticalSum(node.left, column - 1, hashMap)
+    // recursively process right sub-tree
+    this.findVerticalSum(node.right, column + 1, hashMap)
+  }
+
+  getVerticalSum() {
+    const hashMap = new HashTable(this.getTreeWidth())
+    this.findVerticalSum(this.root, 0, hashMap)
+    return hashMap;
+
+
+  }
 }
 const rootValue = 5;
 const tree = new BST(rootValue)
@@ -185,6 +270,12 @@ console.log('Post-order', tree.dfsPostOrder())
 console.log('Breadth-first search', tree.bfs())
 // Breadth-first search reverse
 console.log('Breadth-first search reverse', tree.bfsReverse())
+
+console.log('Max left', tree.getMaxLeft());
+console.log('Max right', tree.getMaxRight());
+console.log('Tree Width', tree.getTreeWidth())
+
+console.log('Vertical sum', tree.getVerticalSum());
 
 
 
